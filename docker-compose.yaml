@@ -1,10 +1,18 @@
 services:
+  # docker build -t name:tag -f php/Dockerfile .
   #nginx
-  web: 
+  web:
     image: nginx:latest
     ports:
       - 80:80
-     
+    volumes:
+      - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+  app:
+    build:
+      dockerfile: ./php/Dockerfile
+    volumes:
+      - ./app:/app
   #php
+
   #mysql
   #redist
