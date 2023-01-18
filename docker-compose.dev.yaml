@@ -12,9 +12,15 @@ services:
   app:
     build:
       dockerfile: ./php/Dockerfile
-    volumes: 
+    volumes:
       - ./app:/var/www/html
-  #mysql
+    environment:
+      MYSQL_HOST: db
+      MYSQL_PORT: ${MYSQL_PORT}
+      MYSQL_PASSWORD:  ${MYSQL_PASSWORD}
+      MYSQL_DATABASE:  ${MYSQL_DATABASE}
+      MYSQL_USER:  ${MYSQL_USER}
+  # mysql
   # CHECK CONNECTION =  docker exec -it docker-php-db-1 mysql -uroot --password=secret
   db:
     image: mysql:8.0
