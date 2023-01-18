@@ -12,10 +12,11 @@ services:
     build:
       dockerfile: ./php/Dockerfile
     volumes:
-      - ./app:/app
+      - /var/www/html/vendor
+      - ./app:/var/www/html
   #mysql
   # CHECK CONNECTION =  docker exec -it docker-php-db-1 mysql -uroot --password=secret
-  db: 
+  db:
     image: mysql:8.0
     volumes:
       - mysqldata:/var/lib/mysql
@@ -27,7 +28,6 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: secret
       MYSQL_DATABASE: docker-php
-
   #redist
 volumes:
   mysqldata:
