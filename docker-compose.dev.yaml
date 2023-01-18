@@ -1,9 +1,9 @@
+# for runing this file = docker compose -f docker-compose.dev.yaml up --build -d
 services:
   # docker build -t name:tag -f php/Dockerfile .
   #nginx
   web:
-    build:
-      dockerfile: ./nginx/Dockerfile
+    image: nginx:latest
     ports:
       - 80:80
     volumes:
@@ -11,13 +11,17 @@ services:
   #php
   app:
     build:
-      dockerfile: ./php/Dockerfile 
+      dockerfile: ./php/Dockerfile
+    volumes: 
+      - ./app:/var/www/html
   #mysql
   # CHECK CONNECTION =  docker exec -it docker-php-db-1 mysql -uroot --password=secret
   db:
     image: mysql:8.0
     volumes:
-      - mysqldata:/var/lib/mysql 
+      - mysqldata:/var/lib/mysql
+    ports:
+      - "3306:3306"
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: secret

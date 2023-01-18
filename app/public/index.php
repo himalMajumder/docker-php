@@ -1,4 +1,4 @@
-<?php ?>
+<?php echo "Hello Himal Majumder"; ?>
 
 <!doctype html>
 <html lang="en">
