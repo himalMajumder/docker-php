@@ -20,6 +20,8 @@ services:
       MYSQL_PASSWORD:  ${MYSQL_PASSWORD}
       MYSQL_DATABASE:  ${MYSQL_DATABASE}
       MYSQL_USER:  ${MYSQL_USER}
+      REDIS_HOST :  cache
+      REDIS_PORT :  ${REDIS_PORT}
   # mysql
   # CHECK CONNECTION =  docker exec -it docker-php-db-1 mysql -uroot --password=secret
   db:
@@ -34,6 +36,8 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: secret
       MYSQL_DATABASE: docker-php
-  #redist
+  #redis
+  cache: 
+    image: redis:latest
 volumes:
   mysqldata:
